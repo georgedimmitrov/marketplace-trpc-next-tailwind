@@ -4,7 +4,12 @@ import { Product } from "@/payload-types";
 import React, { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import Link from "next/link";
-import { cn, formatPrice } from "@/lib/utils";
+import {
+  cn,
+  extractProductImageUrls,
+  extractProductLabel,
+  formatPrice,
+} from "@/lib/utils";
 import { PRODUCT_CATEGORIES } from "@/config";
 import ImageSlider from "../common/ImageSlider";
 
@@ -28,18 +33,8 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
     return <ProductPlaceholder />;
   }
 
-  const label = PRODUCT_CATEGORIES.find(
-    ({ value }) => value === product.category
-  )?.label;
-
-  const productImageUrls = product.images
-    .map(({ image }) => {
-      if (typeof image === "string") {
-        return image;
-      }
-      return image.url;
-    })
-    .filter(Boolean) as string[];
+  const productLabel = extractProductLabel(product);
+  const productImageUrls = extractProductImageUrls(product);
 
   if (isVisible && product) {
     return (
@@ -56,7 +51,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
             {product.name}
           </h3>
 
-          <p className="mt-1 text-sm text-gray-500">{label}</p>
+          <p className="mt-1 text-sm text-gray-500">{productLabel}</p>
 
           <p className="mt-1 font-medium text-sm text-gray-900">
             {formatPrice(product.price)}
