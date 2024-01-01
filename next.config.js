@@ -12,4 +12,14 @@ const nextConfig = {
   },
 };
 
+// if deploying to production for the images to show migth have to do smth like this
+// const nextConfig = {
+//   images: {
+//     domains: [
+//       "localhost",
+//       "yourdomain.url",
+//     ],
+//   },
+// }
+
 module.exports = nextConfig;
