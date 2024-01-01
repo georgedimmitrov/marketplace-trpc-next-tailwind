@@ -2,7 +2,6 @@ import AddToCartButton from "@/components/cart/AddToCartButton";
 import ImageSlider from "@/components/common/ImageSlider";
 import MaxWidthWrapper from "@/components/common/MaxWidthWrapper";
 import ProductReel from "@/components/products/ProductReel";
-import { PRODUCT_CATEGORIES } from "@/config";
 import { getPayloadClient } from "@/get-payload";
 import {
   extractProductImageUrls,
